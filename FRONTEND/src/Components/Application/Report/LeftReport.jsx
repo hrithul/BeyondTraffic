@@ -27,47 +27,55 @@ const LeftReport = ({ reports = [], onAdd, onEdit, onDelete, onRefresh }) => {
         </Row>
 
         <Row className="mt-auto">
-          <Col className="d-flex gap-2">
-            <Button
-              color="primary"
-              outline
-              size="sm"
-              className="rounded-1 px-3 align-middle"
-              onClick={onRefresh}
-            >
-              <FaSync className="text-primary align-middle" />
-            </Button>
-            <Button
-              color="primary"
-              outline
-              size="sm"
-              className="rounded-1 px-3 align-middle"
-              onClick={onAdd}
-            >
-              <FaPlus className="text-primary me-1 align-middle" />
-              Add
-            </Button>
-            <Button
-              color="primary"
-              outline
-              size="sm"
-              className="rounded-1 px-3 align-middle"
-              onClick={onEdit}
-            >
-              <FaPen className="text-dark me-1 align-middle" />
-              Edit
-            </Button>
-            <Button
-              color="danger"
-              outline
-              size="sm"
-              className="rounded-1 px-3 align-middle"
-              onClick={onDelete}
-            >
-              <FaTrash className="text-danger me-1 align-middle" />
-              Delete
-            </Button>
-          </Col>
+          <div className="d-flex justify-content-between align-items-center">
+            <style>
+              {`
+                .hover-button:hover svg {
+                  color: white !important;
+                }
+                .hover-button-outline:hover svg {
+                  color: white !important;
+                }
+              `}
+            </style>
+            <Col className="d-flex gap-2">
+              <Button
+                color="primary"
+                outline
+                className="rounded-1 px-3 align-middle hover-button-outline"
+                onClick={onRefresh}
+              >
+                <FaSync className="text-primary align-middle mb-1" />
+              </Button>
+              <Button
+                color="primary"
+                outline
+                className="rounded-1 px-3 align-middle hover-button-outline"
+                onClick={onAdd}
+              >
+                <FaPlus className="text-primary me-1 align-middle mb-1" />
+                Add
+              </Button>
+              <Button
+                color="primary"
+                outline
+                className="rounded-1 px-3 align-middle hover-button-outline"
+                onClick={onEdit}
+              >
+                <FaPen className="text-dark me-1 align-middle mb-1" />
+                Edit
+              </Button>
+              <Button
+                color="danger"
+                outline
+                className="rounded-1 px-3 align-middle hover-button-outline"
+                onClick={onDelete}
+              >
+                <FaTrash className="text-danger me-1 align-middle mb-1" />
+                Delete
+              </Button>
+            </Col>
+          </div>
         </Row>
       </Col>
     </Row>

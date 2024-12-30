@@ -12,6 +12,10 @@ const regionRoutes = require('./src/routes/regionRoutes');
 const storeRoutes = require('./src/routes/storeRoutes');
 const deviceRoutes = require('./src/routes/deviceRoutes');
 const metricsRoutes = require('./src/routes/metricsRoutes');
+const cron = require("node-cron");
+const fetchJsonFromFTP = require("./src/services/ftpService");
+const saveToMongo = require("./src/utils/saveToMongo");
+const bodyParser = require("body-parser");
 
 app.use(cors());
 
@@ -20,6 +24,7 @@ app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 const Mongo_URI = process.env.DB_CONNECTION;
 // Database connection
@@ -27,6 +32,9 @@ mongoose
   .connect(Mongo_URI)
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Could not connect to MongoDB", err));
+
+
+fetchJsonFromFTP(saveToMongo);
 
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
